@@ -1,0 +1,28 @@
+2/12/2012
+Object:
+Added virtual void draw() const
+-draws a small red box
+
+Vector:
+Overloaded '=='
+Overloaded '='
+
+Agent:
+Added virtual void move()
+
+2/11/2012  :  300
+Made a makefile
+App now quits when 'q' is pressed
+Camera now available
+Checkered floor now available
+
+2/5/2012
+Following classes created:
+-Floor
+-Object
+-Vector
+-WinMgr
+
+Wrote a main, mostly for testing
+
+A drawing class was started, does not compile

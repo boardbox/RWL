@@ -1,0 +1,41 @@
+Robots Features:
+Game is 3d isometric realtime action/rpg coffeebreak type thing
+generated environments
+saves
+randomly spawning enemies
+progression through acquiring items
+menus
+maps cannot be saved, ie generate environ every time
+
+Day 1: (2/5/2012)
+Game window (check)
+Basic game loop
+
+Day 2:
+Makefile (check)
+checkerboard plane (check)
+Movement on infinite plane/start agent class
+Collision with other objects (using bounding circles)
+Basic menu
+-inventory
+-restart
+-quit
+-save
+basic items
+-can pick up and display
+
+Day 3/4:
+Map encoding and generation
+
+Day 5:
+More map stuff if needed
+
+Day 6:
+Create an AI
+
+Day 7:
+Create another AI
+
+Day 8:
+Cross bridge when get here
+Consider more art
