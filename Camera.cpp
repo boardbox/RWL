@@ -11,7 +11,7 @@ tar(Vector(_tar)),
 up(Vector(_up))
 {
 	glMatrixMode(GL_PROJECTION);
-	gluPerspective(45.0,1.0,0.1,500);
+	gluPerspective(45.0,640.0/480.0,0.1,500);
 	glMatrixMode(GL_MODELVIEW);
 	gluLookAt(loc.x,loc.y,loc.z,tar.x,tar.y,tar.z,up.x,up.y,up.z);
 }

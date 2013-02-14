@@ -1,4 +1,11 @@
-2/12/2012
+2/13/2012
+main.cpp:
+started implementing embedded controls
+'const bool gameOver' changed to 'bool gameOver'
+-variable is not meant as const
+window now closes when exit button is pressed
+
+2/12/2012  :  ~340
 Object:
 Added virtual void draw() const
 -draws a small red box
