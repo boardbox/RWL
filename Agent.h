@@ -5,7 +5,7 @@
 #include "Vector.h"
 
 class Agent : public Object{
-	//double speed;
+	double bsize;
 
 	public:
 	Vector dest;

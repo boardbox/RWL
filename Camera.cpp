@@ -5,11 +5,16 @@
 #include "Camera.h"
 
 const double PI = 4.0*atan(1.0);
+const double fovy = 45.0;
 
 Camera::Camera():Object(),tar(Vector(0,0,0)),up(Vector(0,0,1)){}
 
 Camera::Camera(const Vector& _loc, const Vector& _tar, const Vector& _up)
 :Object(_loc),
+xWinSize(640),
+yWinSize(480),
+nclip(5),
+fclip(500),
 tar(Vector(_tar)),
 up(Vector(_up))
 {
@@ -18,9 +23,13 @@ up(Vector(_up))
 	up.normalize();
 	up.sMult(-1);
 	glMatrixMode(GL_PROJECTION);
-	gluPerspective(45.0,640.0/480.0,5,500);
+	gluPerspective(fovy,xWinSize/yWinSize,nclip,fclip);
 	glMatrixMode(GL_MODELVIEW);
 	
+	gluLookAt(loc.x,loc.y,loc.z,tar.x,tar.y,tar.z,up.x,up.y,up.z);
+}
+
+void Camera::reLook(){
 	gluLookAt(loc.x,loc.y,loc.z,tar.x,tar.y,tar.z,up.x,up.y,up.z);
 }
 
@@ -35,21 +44,23 @@ void Camera::getViewRay(Vector& vr,int _x, int _y) const{
 	h.cross(up);
 	h.normalize();
 
-	Vector v(up);
+	Vector v(view);
+	v.cross(h);
+	v.normalize();
 
-	double rad = 45.0 * PI / 180.0;
-	double vLength = tan(rad / 2.0) * 5.0;
-	double hLength = vLength * (640.0/480.0);
+	double rad = fovy * PI / 180.0;
+	double vLength = tan(rad / 2.0) * nclip;
+	double hLength = vLength * (xWinSize/yWinSize);
 	h.sMult(hLength);
 	v.sMult(vLength);
 
-	x -= 640/2;
-	y -= 480/2;
-	x /= 640/2;
-	y /= 480/2;
+	x -= xWinSize/2;
+	y -= yWinSize/2;
+	x /= xWinSize/2;
+	y /= yWinSize/2;
 
 	Vector pos(loc);
-	view.sMult(5);
+	view.sMult(nclip);
 	h.sMult(x);
 	v.sMult(y);
 	pos.add(view);
@@ -59,6 +70,15 @@ void Camera::getViewRay(Vector& vr,int _x, int _y) const{
 	vr = pos;
 }
 
-void Camera::mvTar(){}
+void Camera::updateTar(double x, double y){
+	tar.x = x;
+	tar.y = y;
+}
 
-void Camera::move(){};
+void Camera::move(double x, double y,double z){
+	loc.x = x;
+	loc.y = y;
+	loc.z = z;
+}
+
+void Camera::move(){}

@@ -5,14 +5,20 @@
 #include "Object.h"
 
 class Camera : public Object{
+	double xWinSize;
+	double yWinSize;
+	double nclip;
+	double fclip;
 	Vector tar;
 	Vector up;
 
 	public:
 	Camera();
 	Camera(const Vector& loc,const Vector& tar, const Vector& up);
-	void mvTar();
+	void move(double x, double y,double z);
+	void updateTar(double x, double y);
 	void getViewRay(Vector& vr,int x, int y) const;
+	void reLook();
 	virtual void move();
 };
 

@@ -1,3 +1,11 @@
+2/21/2012
+Agent
+-now moves
+
+Camera
+-ray picking now behaves appropriately
+-cleaned up code
+
 2/15/2012
 Camera:
 Added fetch functions, getTar, getLoc

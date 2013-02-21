@@ -3,7 +3,7 @@
 #include "Object.h"
 #include "Agent.h"
 
-const double speed = 10;
+const double speed = 1;
 const double ftime = 0.01666667;
 
 void Agent::move(){
