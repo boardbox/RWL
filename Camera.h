@@ -6,12 +6,13 @@
 
 class Camera : public Object{
 	Vector tar;
-	const Vector up;
+	Vector up;
 
 	public:
 	Camera();
 	Camera(const Vector& loc,const Vector& tar, const Vector& up);
 	void mvTar();
+	void getViewRay(Vector& vr,int x, int y) const;
 	virtual void move();
 };
 

@@ -19,6 +19,11 @@ void Vector::subtract(const Vector &v){
 	z -= v.z;
 }
 
+void Vector::sMult(double s){
+	x = x*s;
+	y = y*s;
+	z = z*s;
+}
 double Vector::dot(const Vector &v){
 	return (x*v.x + y*v.y + z*v.z);
 }

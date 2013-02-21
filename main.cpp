@@ -10,6 +10,7 @@
 const int xWinSize = 640;
 const int yWinSize = 480;
 const char *title = "Robots with Lasers";
+const Vector up(0,0,1);
 bool gameOver = false;
 
 //helper functions
@@ -18,11 +19,16 @@ int GLFWCALL closeWindow(){
 	return GL_TRUE;
 }
 
-void mvPlayer(const Agent& p){ //move player using mouse
+void mvPlayer(const Agent& p,const Camera& pcam){ //move player using mouse
 	int x,y;
 	glfwGetMousePos(&x,&y);
 	fprintf(stderr,"mouse x: %d mouse y: %d\n",x,y);
-
+	Vector vr;
+	pcam.getViewRay(vr,x,y);
+	double zrat = -pcam.loc.z / vr.z;
+	double yg = zrat*vr.y + pcam.loc.y;
+	double xg = zrat*vr.x + pcam.loc.x;
+	fprintf(stderr,"ground x: %f ground y: %f\n",xg,yg);
 }
 
 int
@@ -37,7 +43,7 @@ main(void){
 	//do some menu stuff here
 	glClearColor(0,0,0,0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	Vector eye(30,30,30);
+	Vector eye(15,0,15);
 	Vector tar(0,0,0);
 	Vector up(0,0,1);
 	Camera cam(eye,tar,up);
@@ -57,7 +63,7 @@ main(void){
 			if(glfwGetKey('S')) jim.loc.y -= 1;
 			if(glfwGetKey('A')) jim.loc.x -= 1;
 			if(glfwGetKey('D')) jim.loc.x += 1;
-			if(glfwGetMouseButton(GLFW_MOUSE_BUTTON_LEFT)) mvPlayer(jim);
+			if(glfwGetMouseButton(GLFW_MOUSE_BUTTON_LEFT)) mvPlayer(jim,cam);
 			glfwSwapBuffers();
 		}
 	}

@@ -13,6 +13,7 @@ struct Vector{
 
 	void add(const Vector &v);
 	void subtract(const Vector &v);
+	void sMult(double s);
 	double dot(const Vector &v);
 	void cross(const Vector &v);
 	void normalize();
