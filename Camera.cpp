@@ -18,10 +18,10 @@ fclip(500),
 tar(Vector(_tar)),
 up(Vector(_up))
 {
-	up.cross(loc);
+	/*up.cross(loc);
 	up.cross(loc);
 	up.normalize();
-	up.sMult(-1);
+	up.sMult(-1);*/
 	glMatrixMode(GL_PROJECTION);
 	gluPerspective(fovy,xWinSize/yWinSize,nclip,fclip);
 	glMatrixMode(GL_MODELVIEW);
@@ -30,6 +30,7 @@ up(Vector(_up))
 }
 
 void Camera::reLook(){
+	glLoadIdentity();
 	gluLookAt(loc.x,loc.y,loc.z,tar.x,tar.y,tar.z,up.x,up.y,up.z);
 }
 

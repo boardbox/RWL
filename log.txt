@@ -3,6 +3,7 @@ Agent
 -now moves
 
 Camera
+-can now follow a target
 -ray picking now behaves appropriately
 -cleaned up code
 

@@ -1,6 +1,6 @@
 CC = g++
 LIBS = -lGL -lGLU -lglfw
-FLAGS = -c -Wall
+FLAGS = -c -Wall -g
 OBJECTS = main.o Vector.o Object.o WinMgr.o Floor.o Camera.o Agent.o
 
 app: Robots

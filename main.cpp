@@ -51,7 +51,7 @@ main(void){
 	//do some menu stuff here
 	glClearColor(0,0,0,0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	Vector eye(15,0,15);
+	Vector eye(-20,-20,30);
 	Vector tar(0,0,0);
 	Vector up(0,0,1);
 	Camera cam(eye,tar,up);
@@ -77,6 +77,10 @@ main(void){
 			}else{	
 				jim.move();
 			}
+			cam.loc.x = jim.loc.x - 20;//lets camera follow
+			cam.loc.y = jim.loc.y - 20;
+			cam.updateTar(jim.loc.x,jim.loc.y);
+			cam.reLook();
 			glfwSwapBuffers();
 		}
 	}
