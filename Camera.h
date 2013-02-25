@@ -19,6 +19,7 @@ class Camera : public Object{
 	void updateTar(double x, double y);
 	void getViewRay(Vector& vr,int x, int y) const;
 	void reLook();
+	void set(const Vector& l,const Vector& t,const Vector& u);
 	virtual void move();
 };
 

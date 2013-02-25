@@ -6,11 +6,11 @@
 
 Floor::Floor(){}
 
+Floor::Floor(double x,double y):xMax(x),yMax(y){}
+
 void Floor::draw() const{
-	double xMin = -1000;
-	double xMax = 1000;
-	double yMin = -1000;
-	double yMax = 1000;
+	double xMin = 0;
+	double yMin = 0;
 	double x = xMin;
 	double y = yMin;
 	glBegin(GL_QUADS);

@@ -34,6 +34,13 @@ void Camera::reLook(){
 	gluLookAt(loc.x,loc.y,loc.z,tar.x,tar.y,tar.z,up.x,up.y,up.z);
 }
 
+void Camera::set(const Vector& l,const Vector& t, const Vector& u){
+	loc = t;
+	tar = t;
+	up = u;
+	reLook();
+}
+
 void Camera::getViewRay(Vector& vr,int _x, int _y) const{
 	double x = _x;
 	double y = _y;

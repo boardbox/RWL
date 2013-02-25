@@ -13,7 +13,9 @@ class God{
 	bool alive;
 	bool redo;
 	WinMgr window;
+	Object *tHead;
 	Object *terrain;
+	Agent *rHead;
 	Agent *robots;
 	Camera *eye;
 
@@ -27,9 +29,7 @@ class God{
 	public:
 	God(); //default constructor
 	void newGame();
-	void setPlayer(Agent *player);
-	void setWorld();
-	~God();
+	void draw();
 };
 
 #endif

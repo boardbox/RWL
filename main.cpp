@@ -6,7 +6,8 @@
 #include "WinMgr.h"
 #include "Floor.h"
 #include "Camera.h"
-#include "Agent.h" 
+#include "Agent.h"
+#include "God.h" 
 
 //constants
 const int xWinSize = 640;
@@ -41,46 +42,19 @@ void mvPlayer(Agent& p,const Camera& pcam){ //move player using mouse
 //program main
 int
 main(void){
-	//start up window crap
-	WinMgr window(title, xWinSize, yWinSize);
-	Floor f;
-	if(window.openWindow() != 1){
-		fprintf(stderr,"Failure at window initialization\n");
-	}
+	God god;
+	god.newGame();
 	glfwSetWindowCloseCallback(closeWindow);
 	//do some menu stuff here
 	glClearColor(0,0,0,0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	Vector eye(-20,-20,30);
-	Vector tar(0,0,0);
-	Vector up(0,0,1);
-	Camera cam(eye,tar,up);
-	Agent jim;
 	glfwSwapBuffers();
 	//do some game stuff after the menu stuff
 	glfwSetTime(0);
 	double ptime = glfwGetTime();
 	while(!gameOver){
 		if(glfwGetTime() > ptime + ftime){
-			f.draw();
-			jim.draw();
-			ptime = glfwGetTime();
-			if(glfwGetKey(GLFW_KEY_ESC)) break;
-			if(glfwGetKey('Q')) break;
-			if(glfwGetKey('W')) jim.loc.y += 1;
-			if(glfwGetKey('S')) jim.loc.y -= 1;
-			if(glfwGetKey('A')) jim.loc.x -= 1;
-			if(glfwGetKey('D')) jim.loc.x += 1;
-			if(glfwGetMouseButton(GLFW_MOUSE_BUTTON_LEFT)){ 
-				mvPlayer(jim,cam);
-				jim.move();
-			}else{	
-				jim.move();
-			}
-			cam.loc.x = jim.loc.x - 20;//lets camera follow
-			cam.loc.y = jim.loc.y - 20;
-			cam.updateTar(jim.loc.x,jim.loc.y);
-			cam.reLook();
+			god.draw();
 			glfwSwapBuffers();
 		}
 	}

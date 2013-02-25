@@ -10,14 +10,13 @@ class Object{
 	Object(const Object&);
 	Object& operator=(const Object&);
 	
-	protected:
+	public:
 	Object(const Vector& _loc);
 	Object* getNext() const;
 	Object* getPrev() const;
 	void setNext(Object *t);
 	void setPrev(Object *t);
 	
-	public:
 	Vector loc;
 	
 	Object();
