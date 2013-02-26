@@ -7,7 +7,6 @@ app: Robots
 
 Robots : $(OBJECTS)
 	$(CC) $(OBJECTS) $(LIBS) -o Robots
-	rm *.o
 
 main.o : src/main.cpp
 	$(CC) $(FLAGS) src/main.cpp
