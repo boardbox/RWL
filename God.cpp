@@ -24,6 +24,7 @@ God::God():
 	alive(true),redo(false),
 	window(name,def_x,def_y),
 	tHead(NULL),terrain(NULL),rHead(NULL),robots(NULL),eye(NULL){
+	srand(time(NULL));
 	window.openWindow();
 }
 
