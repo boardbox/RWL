@@ -1,35 +1,40 @@
 CC = g++
 LIBS = -lGL -lGLU -lglfw
-FLAGS = -c -Wall -g
+FLAGS = -c -Wall -g -Iinclude
 OBJECTS = main.o Vector.o Object.o WinMgr.o Floor.o Camera.o Agent.o Terrain.o God.o
 
 app: Robots
 
 Robots : $(OBJECTS)
 	$(CC) $(OBJECTS) $(LIBS) -o Robots
+	rm *.o
 
-main.o : main.cpp
-	$(CC) $(FLAGS) main.cpp
+main.o : src/main.cpp
+	$(CC) $(FLAGS) src/main.cpp
 
-Vector.o : Vector.h Vector.cpp 
-	$(CC) $(FLAGS) Vector.cpp
+Vector.o : src/Vector.cpp 
+	$(CC) $(FLAGS) src/Vector.cpp
 
-Object.o : Object.h Object.cpp Vector.h
-	$(CC) $(FLAGS) Object.cpp
+Object.o : src/Object.cpp 
+	$(CC) $(FLAGS) src/Object.cpp
 
-WinMgr.o : WinMgr.h WinMgr.cpp
-	$(CC) $(FLAGS) WinMgr.cpp
+WinMgr.o : src/WinMgr.cpp
+	$(CC) $(FLAGS) src/WinMgr.cpp
 
-Floor.o : Object.h Floor.h Floor.cpp
-	$(CC) $(FLAGS) Floor.cpp
+Floor.o : src/Floor.cpp
+	$(CC) $(FLAGS) src/Floor.cpp
 
-Camera.o : Vector.h Object.h Camera.h Camera.cpp
-	$(CC) $(FLAGS) Camera.cpp
+Camera.o : src/Camera.cpp
+	$(CC) $(FLAGS) src/Camera.cpp
 
-Agent.o : Agent.h Agent.cpp Object.h Vector.h
-	$(CC) $(FLAGS) Agent.cpp
+Agent.o : src/Agent.cpp
+	$(CC) $(FLAGS) src/Agent.cpp
 
-God.o : God.h God.cpp Vector.h Object.h Agent.h Camera.h Floor.h Terrain.h
-	$(CC) $(FLAGS) God.cpp
+God.o : src/God.cpp 
+	$(CC) $(FLAGS) src/God.cpp
+
+Terrain.o : src/Terrain.cpp
+	$(CC) $(FLAGS) src/Terrain.cpp
+
 clean :
 	rm -rf *.o Robots
