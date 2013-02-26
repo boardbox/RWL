@@ -2,7 +2,6 @@
 #include <cstdlib>
 #include <cstdio>
 #include "Vector.h"
-#include "Object.h"
 #include "Agent.h"
 #include "Camera.h"
 #include "Floor.h"
