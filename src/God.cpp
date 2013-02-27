@@ -75,5 +75,7 @@ void God::input(){
 	if(glfwGetKey('F')) eye->move(0,0,-1);
 	if(glfwGetKey('Q')) eye->rotate(-1);
 	if(glfwGetKey('E')) eye->rotate(1);
+	if(glfwGetKey('T')) eye->zoom(-1);
+	if(glfwGetKey('G')) eye->zoom(1);
 	eye->reLook();
 }

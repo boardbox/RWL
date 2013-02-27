@@ -9,6 +9,7 @@ Camera:
 Makes relative moves using wasd
 Does rotate using qe
 Up/down zoomish thing using rf
+Zooms too
 
 2/26/2012
 Reorganized code and updated makefile

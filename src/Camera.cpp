@@ -111,4 +111,13 @@ void Camera::rotate(double lr){
 	loc.add(d);
 }
 
+void Camera::zoom(double zoom){
+	loc.subtract(tar);
+	double mag = loc.length();
+	mag += zoom;
+	loc.normalize();
+	loc.sMult(mag);
+	loc.add(tar);
+}
+
 void Camera::draw() const{}

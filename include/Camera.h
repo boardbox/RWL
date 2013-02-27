@@ -17,6 +17,7 @@ class Camera : public Object{
 	Camera(const Vector& loc,const Vector& tar, const Vector& up);
 	void move(double x, double y,double z);
 	void rotate(double lr);
+	void zoom(double zoom);
 	void updateTar(double x, double y);
 	void getViewRay(Vector& vr,int x, int y) const;
 	void reLook();
