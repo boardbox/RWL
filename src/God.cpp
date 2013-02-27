@@ -1,6 +1,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <cstdio>
+#include <GL/glfw.h>
 #include "Vector.h"
 #include "Agent.h"
 #include "Camera.h"
@@ -57,9 +58,22 @@ void God::generateTerrain(){
 void God::setStartAgents(){}
 
 void God::draw(){
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	terrain = tHead;
 	while(terrain != NULL){
 		terrain->draw();
 		terrain = terrain->getNext();
 	}
+}
+
+void God::input(){
+	if(glfwGetKey('W')) eye->move(1,0,0);
+	if(glfwGetKey('S')) eye->move(-1,0,0);
+	if(glfwGetKey('A')) eye->move(0,-1,0);
+	if(glfwGetKey('D')) eye->move(0,1,0);
+	if(glfwGetKey('R')) eye->move(0,0,1);
+	if(glfwGetKey('F')) eye->move(0,0,-1);
+	if(glfwGetKey('Q')) eye->rotate(-1);
+	if(glfwGetKey('E')) eye->rotate(1);
+	eye->reLook();
 }

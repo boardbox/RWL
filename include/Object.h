@@ -20,8 +20,7 @@ class Object{
 	Vector loc;
 	
 	Object();
-	virtual void move() = 0;
-	virtual void draw() const;
+	virtual void draw() const=0;
 	virtual ~Object();
 };
 

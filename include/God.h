@@ -30,6 +30,7 @@ class God{
 	God(); //default constructor
 	void newGame();
 	void draw();
+	void input();
 };
 
 #endif

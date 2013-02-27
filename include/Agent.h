@@ -9,8 +9,8 @@ class Agent : public Object{
 
 	public:
 	Vector dest;
-	virtual void move();
-	//virtual void draw() const;
+	void move();
+	void draw() const;
 };
 
 #endif

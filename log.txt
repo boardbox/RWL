@@ -1,3 +1,25 @@
+2/27/2012
+Object:
+Removed functions that no longer suited interface
+-removed pure virtual move
+-removed virtual draw
+-draw readded, removal broke scene rendering
+
+Camera:
+Makes relative moves using wasd
+Does rotate using qe
+Up/down zoomish thing using rf
+
+2/26/2012
+Reorganized code and updated makefile
+
+Introduced God
+-serves as a driver
+
+main.cpp
+-integrated God
+-removed a lot of unnessecary code
+
 2/21/2012
 Agent
 -now moves

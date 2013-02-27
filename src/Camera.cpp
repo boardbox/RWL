@@ -18,10 +18,6 @@ fclip(500),
 tar(Vector(_tar)),
 up(Vector(_up))
 {
-	/*up.cross(loc);
-	up.cross(loc);
-	up.normalize();
-	up.sMult(-1);*/
 	glMatrixMode(GL_PROJECTION);
 	gluPerspective(fovy,xWinSize/yWinSize,nclip,fclip);
 	glMatrixMode(GL_MODELVIEW);
@@ -83,10 +79,36 @@ void Camera::updateTar(double x, double y){
 	tar.y = y;
 }
 
-void Camera::move(double x, double y,double z){
-	loc.x = x;
-	loc.y = y;
-	loc.z = z;
+void Camera::move(double fb, double ss,double ud){
+	Vector f(tar);
+	f.subtract(loc);
+	f.z = 0;
+	if(fb != 0){
+		f.normalize();
+		f.sMult(fb);
+		loc.add(f);
+		tar.add(f);
+	}
+	if(ss != 0 ){
+		f.cross(up);
+		f.normalize();
+		f.sMult(ss);
+		loc.add(f);
+		tar.add(f);
+	}
+	if(ud != 0){
+		loc.z += ud;
+	}
 }
 
-void Camera::move(){}
+void Camera::rotate(double lr){
+	Vector d(tar);
+	d.subtract(loc);
+	d.z = 0;
+	d.cross(up);
+	d.normalize();
+	d.sMult(lr);
+	loc.add(d);
+}
+
+void Camera::draw() const{}

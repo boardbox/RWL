@@ -54,8 +54,10 @@ main(void){
 	double ptime = glfwGetTime();
 	while(!gameOver){
 		if(glfwGetTime() > ptime + ftime){
+			ptime += ftime;
 			god.draw();
 			glfwSwapBuffers();
+			god.input();
 		}
 	}
 	//do the clean up crap and exit
