@@ -97,7 +97,12 @@ void Camera::move(double fb, double ss,double ud){
 		tar.add(f);
 	}
 	if(ud != 0){
+		loc.subtract(tar);
+		double mag = loc.length();
 		loc.z += ud;
+		loc.normalize();
+		loc.sMult(mag);
+		loc.add(tar);
 	}
 }
 
