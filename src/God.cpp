@@ -20,6 +20,8 @@ const Vector iUp(0,0,1);
 const Vector iLoc(100,200,50);
 const Vector iTar(100,0,0);
 
+bool selectStatus = false;
+
 God::God():
 	alive(true),redo(false),
 	window(name,def_x,def_y),
@@ -66,6 +68,24 @@ void God::draw(){
 	}
 }
 
+Vector God::getWorldCoord(int mx,int my){
+	Vector vr; //view ray
+	eye->getViewRay(vr,mx,my);
+	double zrat = -eye->loc.z / vr.z;
+	double yg = zrat*vr.y + eye->loc.y;
+	double xg = zrat*vr.x + eye->loc.x;
+	fprintf(stderr,"mouse: %d mouse: %d\n",mx,my);
+	fprintf(stderr,"world: %f world: %f\n",xg,yg);
+	vr.x = xg;
+	vr.y = yg;
+	vr.z = 0;
+	return vr;
+}
+
+void God::issueMove(const Vector& dest){}
+
+void God::attemptSelect(){};
+
 void God::input(){
 	//camera controls go here
 	if(glfwGetKey('W')) eye->move(1,0,0);
@@ -80,5 +100,20 @@ void God::input(){
 	if(glfwGetKey('G')) eye->zoom(1);
 	eye->reLook();
 
-	//unit selection and movement
+	//mouse commands
+	if(glfwGetMouseButton(GLFW_MOUSE_BUTTON_LEFT)){
+		int mx,my;
+		glfwGetMousePos(&mx,&my);
+		Vector spot = getWorldCoord(mx,my);
+		if(selectStatus == true){
+			issueMove(spot);
+		}
+		else{
+			attemptSelect();
+		}
+	}
+	if(glfwGetMouseButton(GLFW_MOUSE_BUTTON_RIGHT)){
+		selectStatus = false;
+	}
+		
 }

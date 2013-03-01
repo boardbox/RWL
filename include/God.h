@@ -15,6 +15,8 @@ class God{
 	WinMgr window;
 	Object *tHead;
 	Object *terrain;
+	Object *sHead;
+	Object *selectable;
 	Agent *rHead;
 	Agent *robots;
 	Camera *eye;
@@ -25,6 +27,9 @@ class God{
 	void forgetAll();
 	void generateTerrain();
 	void setStartAgents();
+	void issueMove(const Vector& dest);
+	void attemptSelect();
+	Vector getWorldCoord(int mx,int my);
 
 	public:
 	God(); //default constructor
