@@ -1,7 +1,7 @@
 #include <GL/glfw.h>
 #include "Object.h"
 
-Object::Object(){};
+Object::Object():prev(NULL),next(NULL){};
 
 Object::Object(const Vector& _loc):loc(Vector(_loc)){}
 

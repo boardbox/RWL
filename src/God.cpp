@@ -57,7 +57,11 @@ void God::generateTerrain(){
 	}
 }
 
-void God::setStartAgents(){}
+void God::setStartAgents(){
+	rHead = new Agent();
+	robots = rHead;
+	rHead->loc = Vector(10,10,0);
+}
 
 void God::draw(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -65,6 +69,11 @@ void God::draw(){
 	while(terrain != NULL){
 		terrain->draw();
 		terrain = terrain->getNext();
+	}
+	robots = rHead;
+	while(robots != NULL){
+		robots->draw();
+		robots = robots->getNext();
 	}
 }
 
@@ -82,9 +91,29 @@ Vector God::getWorldCoord(int mx,int my){
 	return vr;
 }
 
-void God::issueMove(const Vector& dest){}
+void God::issueMove(const Vector& dest){
+	selection->dest = dest;
+}
 
-void God::attemptSelect(){};
+void God::attemptSelect(const Vector& pos){
+	Object* ptr = rHead;
+	while(ptr != NULL){
+		if(ptr->collide(pos)){
+			selectStatus = true;
+			selection = (Agent*) ptr;
+			break;
+		}
+		ptr = ptr->getNext();
+	}
+}
+
+void God::action(){
+	Agent* r = (Agent*)rHead;
+	while(robots != NULL){
+		r->move();
+		r = (Agent*)r->getNext();
+	}
+}
 
 void God::input(){
 	//camera controls go here
@@ -109,7 +138,7 @@ void God::input(){
 			issueMove(spot);
 		}
 		else{
-			attemptSelect();
+			attemptSelect(spot);
 		}
 	}
 	if(glfwGetMouseButton(GLFW_MOUSE_BUTTON_RIGHT)){

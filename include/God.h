@@ -15,10 +15,9 @@ class God{
 	WinMgr window;
 	Object *tHead;
 	Object *terrain;
-	Object *sHead;
-	Object *selectable;
-	Agent *rHead;
-	Agent *robots;
+	Agent *selection;
+	Object *rHead;
+	Object *robots;
 	Camera *eye;
 
 	God(const God& g); //there is no copying of God
@@ -28,7 +27,8 @@ class God{
 	void generateTerrain();
 	void setStartAgents();
 	void issueMove(const Vector& dest);
-	void attemptSelect();
+	void attemptSelect(const Vector&);
+
 	Vector getWorldCoord(int mx,int my);
 
 	public:
@@ -36,6 +36,7 @@ class God{
 	void newGame();
 	void draw();
 	void input();
+	void action();
 };
 
 #endif

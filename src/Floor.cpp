@@ -54,5 +54,24 @@ void Floor::draw() const{
 	glEnd();
 }
 
+bool Floor::collide(const Vector& pos) const{
+	double xMin,yMin;
+	xMin = yMin = 0;
+	if(pos.x >= xMin && pos.x <= xMax){
+		if(pos.y >= yMin && pos.y <= yMax){
+			return true;
+		}
+	}
+	return false;
+}
 
-void Floor::move(){} //currently doesn't move
+bool Floor::collide(const Object& pos) const{
+	double xMin,yMin;
+	xMin = yMin = 0;
+	if(pos.loc.x >= xMin && pos.loc.x <= xMax){
+		if(pos.loc.y >= yMin && pos.loc.y <= yMax){
+			return true;
+		}
+	}
+	return false;
+}

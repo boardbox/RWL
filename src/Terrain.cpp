@@ -51,3 +51,17 @@ void Terrain::draw() const{
 }
 
 void Terrain::move(){} 
+
+bool Terrain::collide(const Vector& pos) const{
+	Vector ruler(loc);
+	ruler.subtract(pos);
+	if(ruler.length() < rad) return true;
+	return false;
+}
+
+bool Terrain::collide(const Object& thing) const{
+	Vector ruler(loc);
+	ruler.subtract(thing.loc);
+	if(ruler.length() < rad) return true;
+	return false;
+}

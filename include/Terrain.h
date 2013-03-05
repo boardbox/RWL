@@ -17,6 +17,8 @@ class Terrain : public Object{
 	
 	Terrain(double xMax,double yMax);
 	virtual void draw() const;
+	virtual bool collide(const Vector&) const;
+	virtual bool collide(const Object&) const;
 };
 
 #endif

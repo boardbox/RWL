@@ -5,12 +5,16 @@
 #include "Vector.h"
 
 class Agent : public Object{
-	double bsize;
+	const double bsize;
 
 	public:
 	Vector dest;
 	void move();
-	void draw() const;
+
+	Agent();
+	virtual void draw() const;
+	virtual bool collide(const Vector&) const;
+	virtual bool collide(const Object&) const;
 };
 
 #endif

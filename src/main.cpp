@@ -45,11 +45,9 @@ main(void){
 	God god;
 	god.newGame();
 	glfwSetWindowCloseCallback(closeWindow);
-	//do some menu stuff here
 	glClearColor(0,0,0,0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glfwSwapBuffers();
-	//do some game stuff after the menu stuff
 	glfwSetTime(0);
 	double ptime = glfwGetTime();
 	while(!gameOver){
@@ -58,9 +56,9 @@ main(void){
 			god.draw();
 			glfwSwapBuffers();
 			god.input();
+			god.action();
 		}
 	}
-	//do the clean up crap and exit
 	glfwTerminate();
 	return 1;
 }

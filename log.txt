@@ -1,3 +1,31 @@
+3/4/2012
+God:
+Removed sHead and selectable pointers
+-design conflicted with Object implementation
+Added attemptSelect()
+
+Camera:
+Removed Object interface
+-interface not used by class
+
+Object:
+Added virtual bool collide(const Vector&) const=0
+Added virtual bool collide(const Object&) const=0
+-Most things with the Object interface have a collision
+ status. This forces entities that use the interface to
+ implement collision testing.
+
+Terrain:
+Added virtual bool collide(const Vector&) const
+Added virtual bool collide(const Object&) const
+
+Floor:
+Added virtual bool collide(const Vector&) const
+Added virtual bool collide(const Object&) const
+
+Agent:
+Added virtual bool collide(const Vector&) const
+Added virtual bool collide(const Object&) const
 2/27/2012
 Object:
 Removed functions that no longer suited interface

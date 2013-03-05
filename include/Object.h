@@ -21,6 +21,8 @@ class Object{
 	
 	Object();
 	virtual void draw() const=0;
+	virtual bool collide(const Vector&) const=0;
+	virtual bool collide(const Object&) const=0;
 	virtual ~Object();
 };
 

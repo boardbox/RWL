@@ -1,22 +1,21 @@
 #include <cmath>
 #include <GL/glfw.h>
 #include "Vector.h"
-#include "Object.h"
 #include "Camera.h"
 
 const double PI = 4.0*atan(1.0);
 const double fovy = 45.0;
 
-Camera::Camera():Object(),tar(Vector(0,0,0)),up(Vector(0,0,1)){}
+Camera::Camera():tar(Vector(0,0,0)),up(Vector(0,0,1)),loc(Vector(1,0,1)){}
 
 Camera::Camera(const Vector& _loc, const Vector& _tar, const Vector& _up)
-:Object(_loc),
-xWinSize(640),
+:xWinSize(640),
 yWinSize(480),
 nclip(5),
 fclip(500),
 tar(Vector(_tar)),
-up(Vector(_up))
+up(Vector(_up)),
+loc(Vector(_loc))
 {
 	glMatrixMode(GL_PROJECTION);
 	gluPerspective(fovy,xWinSize/yWinSize,nclip,fclip);

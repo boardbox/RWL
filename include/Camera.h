@@ -2,9 +2,8 @@
 #define CAMERA_H
 
 #include "Vector.h"
-#include "Object.h"
 
-class Camera : public Object{
+class Camera{
 	double xWinSize;
 	double yWinSize;
 	double nclip;
@@ -13,6 +12,8 @@ class Camera : public Object{
 	Vector up;
 
 	public:
+	Vector loc;
+
 	Camera();
 	Camera(const Vector& loc,const Vector& tar, const Vector& up);
 	void move(double x, double y,double z);

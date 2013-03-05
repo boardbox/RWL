@@ -7,6 +7,8 @@
 const double speed = 1;
 const double ftime = 0.01666667;
 
+Agent::Agent():Object(),bsize(5){}
+	
 void Agent::move(){
 	if(dest == loc) return; //nothing to do
 
@@ -68,4 +70,18 @@ void Agent::draw() const{
 		glVertex3f(loc.x+l,loc.y+l,loc.z+l);
 		glVertex3f(loc.x+l,loc.y+l,loc.z);
 	glEnd();
+}
+
+bool Agent::collide(const Vector& vec) const{
+	Vector ruler(loc);
+	ruler.subtract(vec);
+	if(ruler.length() < bsize) return true;
+	else return false;
+}
+
+bool Agent::collide(const Object& thing) const{
+	Vector ruler(thing.loc);
+	ruler.subtract(loc);
+	if(ruler.length() < bsize) return true;
+	else return false;
 }
