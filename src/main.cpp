@@ -56,7 +56,6 @@ main(void){
 			god.draw();
 			glfwSwapBuffers();
 			god.input();
-			god.action();
 		}
 	}
 	glfwTerminate();

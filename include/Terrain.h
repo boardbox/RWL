@@ -1,9 +1,10 @@
 #ifndef TERRAIN_H
 #define TERRAIN_H
 
-#include "Object.h"
+#include "ILinkedList.h"
 
-class Terrain : public Object{
+class Terrain : public ILinkedList{
+	bool collides;
 	double rad;
 	int type;
 
@@ -16,9 +17,9 @@ class Terrain : public Object{
 	bool walkable;
 	
 	Terrain(double xMax,double yMax);
-	virtual void draw() const;
-	virtual bool collide(const Vector&) const;
-	virtual bool collide(const Object&) const;
+	void draw() const;
+	bool collide(const Vector&) const;
+	bool collide(const Object&) const;
 };
 
 #endif

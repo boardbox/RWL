@@ -5,7 +5,6 @@
 #include "Vector.h"
 #include "Agent.h"
 #include "Camera.h"
-#include "Floor.h"
 #include "Terrain.h"
 #include "God.h"
 
@@ -25,7 +24,7 @@ bool selectStatus = false;
 God::God():
 	alive(true),redo(false),
 	window(name,def_x,def_y),
-	tHead(NULL),terrain(NULL),rHead(NULL),robots(NULL),eye(NULL){
+	tHead(NULL),terrain(NULL),eye(NULL){
 	srand(time(NULL));
 	window.openWindow();
 }
@@ -34,12 +33,9 @@ void God::newGame(){
 	redo = false;
 	forgetAll();
 	generateTerrain();
-	setStartAgents();
 }
 
 void God::forgetAll(){
-	delete robots;
-	robots = NULL;
 	delete terrain;
 	terrain = NULL;
 	if(eye == NULL) eye = new Camera(iLoc,iTar,iUp);
@@ -47,7 +43,7 @@ void God::forgetAll(){
 }
 
 void God::generateTerrain(){
-	terrain = new Floor(xWorld,yWorld);
+	terrain = new Terrain(xWorld,yWorld);
 	tHead = terrain;
 	int num = rand() % maxTerrain + 1;
 	for(int i=0;i<num;i++){
@@ -57,23 +53,12 @@ void God::generateTerrain(){
 	}
 }
 
-void God::setStartAgents(){
-	rHead = new Agent();
-	robots = rHead;
-	rHead->loc = Vector(10,10,0);
-}
-
 void God::draw(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	terrain = tHead;
 	while(terrain != NULL){
 		terrain->draw();
 		terrain = terrain->getNext();
-	}
-	robots = rHead;
-	while(robots != NULL){
-		robots->draw();
-		robots = robots->getNext();
 	}
 }
 
@@ -91,30 +76,6 @@ Vector God::getWorldCoord(int mx,int my){
 	return vr;
 }
 
-void God::issueMove(const Vector& dest){
-	selection->dest = dest;
-}
-
-void God::attemptSelect(const Vector& pos){
-	Object* ptr = rHead;
-	while(ptr != NULL){
-		if(ptr->collide(pos)){
-			selectStatus = true;
-			selection = (Agent*) ptr;
-			break;
-		}
-		ptr = ptr->getNext();
-	}
-}
-
-void God::action(){
-	Agent* r = (Agent*)rHead;
-	while(robots != NULL){
-		r->move();
-		r = (Agent*)r->getNext();
-	}
-}
-
 void God::input(){
 	//camera controls go here
 	if(glfwGetKey('W')) eye->move(1,0,0);
@@ -128,21 +89,4 @@ void God::input(){
 	if(glfwGetKey('T')) eye->zoom(-1);
 	if(glfwGetKey('G')) eye->zoom(1);
 	eye->reLook();
-
-	//mouse commands
-	if(glfwGetMouseButton(GLFW_MOUSE_BUTTON_LEFT)){
-		int mx,my;
-		glfwGetMousePos(&mx,&my);
-		Vector spot = getWorldCoord(mx,my);
-		if(selectStatus == true){
-			issueMove(spot);
-		}
-		else{
-			attemptSelect(spot);
-		}
-	}
-	if(glfwGetMouseButton(GLFW_MOUSE_BUTTON_RIGHT)){
-		selectStatus = false;
-	}
-		
 }

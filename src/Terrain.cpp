@@ -6,6 +6,7 @@
 
 const int mountain = 1;
 const int swamp 	 = 2;
+const int floor		 = 3;
 const double PI = 4.0*atan(1.0);
 
 Terrain::Terrain(double xMax,double yMax):
@@ -47,6 +48,53 @@ void Terrain::draw() const{
 				glVertex3f(loc.x,loc.y,0);
 			glEnd();
 		}
+	}
+	else if(type == floor){
+		double xMin = 0;
+		double yMin = 0;
+		double xMax = 200;
+		double yMax = 100;
+		double x = xMin;
+		double y = yMin;
+		glBegin(GL_QUADS);
+		while(x < xMax){
+			while(y < yMax){
+				//glBegin(GL_QUADS);
+				//fprintf(stderr,"starting x: %f, y: %f",x,y);
+				glColor3f(0.0,0.0,0.0);
+				glVertex3f(x,y,0);
+				glVertex3f(x+10,y,0);
+				glVertex3f(x+10,y+10,0);
+				glVertex3f(x,y+10,0);
+
+				y += 10;
+				glColor3f(1.0,1.0,1.0);
+				glVertex3f(x,y,0);
+				glVertex3f(x+10,y,0);
+				glVertex3f(x+10,y+10,0);
+				glVertex3f(x,y+10,0);
+			//glEnd();
+			y -= 10;
+			x += 10;
+				glColor3f(1.0,1.0,1.0);
+				glVertex3f(x,y,0);
+				glVertex3f(x+10,y,0);
+				glVertex3f(x+10,y+10,0);
+				glVertex3f(x,y+10,0);
+
+				y += 10;
+				glColor3f(0,0,0);
+				glVertex3f(x,y,0);
+				glVertex3f(x+10,y,0);
+				glVertex3f(x+10,y+10,0);
+				glVertex3f(x,y+10,0);
+			y += 10;
+			x -= 10;
+		}
+		y = yMin;
+		x += 20;
+	}
+	glEnd();
 	}
 }
 

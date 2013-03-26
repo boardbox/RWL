@@ -1,4 +1,14 @@
-3/4/2012
+3/26/2013
+Finished updating Vector
+Delaying work on Agent until UI is mapped out
+Removed references to Agent
+Began integrating Floor into Terrain
+
+3/25/2013
+Began updating Vector
+Did review
+
+3/4/2013
 God:
 Removed sHead and selectable pointers
 -design conflicted with Object implementation
@@ -26,7 +36,7 @@ Added virtual bool collide(const Object&) const
 Agent:
 Added virtual bool collide(const Vector&) const
 Added virtual bool collide(const Object&) const
-2/27/2012
+2/27/2013
 Object:
 Removed functions that no longer suited interface
 -removed pure virtual move
@@ -49,7 +59,7 @@ main.cpp
 -integrated God
 -removed a lot of unnessecary code
 
-2/21/2012
+2/21/2013
 Agent
 -now moves
 
@@ -58,18 +68,18 @@ Camera
 -ray picking now behaves appropriately
 -cleaned up code
 
-2/15/2012
+2/15/2013
 Camera:
 Added fetch functions, getTar, getLoc
 
-2/13/2012
+2/13/2013
 main.cpp:
 started implementing embedded controls
 'const bool gameOver' changed to 'bool gameOver'
 -variable is not meant as const
 window now closes when exit button is pressed
 
-2/12/2012  :  ~340
+2/12/2013  :  ~340
 Object:
 Added virtual void draw() const
 -draws a small red box
@@ -81,13 +91,13 @@ Overloaded '='
 Agent:
 Added virtual void move()
 
-2/11/2012  :  300
+2/11/2013  :  300
 Made a makefile
 App now quits when 'q' is pressed
 Camera now available
 Checkered floor now available
 
-2/5/2012
+2/5/2013
 Following classes created:
 -Floor
 -Object

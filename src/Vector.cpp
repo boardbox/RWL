@@ -24,6 +24,15 @@ void Vector::sMult(double s){
 	y = y*s;
 	z = z*s;
 }
+
+void Vector::sMult(int s){
+	sMult((double) s);
+}
+
+void Vector::sMult(float s){
+	sMult((double) s);
+}
+
 double Vector::dot(const Vector &v){
 	return (x*v.x + y*v.y + z*v.z);
 }
@@ -60,4 +69,73 @@ Vector& Vector::operator=(const Vector &rhs){
 	y = rhs.y;
 	z = rhs.z;
 	return *this;
+}
+
+Vector& Vector::operator+=(const Vector &rhs){
+	if(this == &rhs){
+		sMult(2.0);
+		return *this;
+	}
+	else{
+		add(rhs);
+		return *this;
+	}
+}
+
+Vector& Vector::operator-=(const Vector &rhs){
+	if(this == &rhs){
+		x = 0;
+		y = 0;
+		z = 0;
+		return *this;
+	}
+	else{
+		subtract(rhs);
+		return *this;
+	}
+}
+
+Vector& Vector::operator*=(double anum){
+		sMult(anum);
+		return *this;
+}
+
+Vector& Vector::operator*=(int anum){
+	sMult(anum);
+	return *this;
+}
+	
+Vector& Vector::operator*=(float anum){
+	sMult(anum);
+	return *this;
+}
+
+const Vector Vector::operator+(const Vector& other){
+	Vector res(*this);
+	res += other;
+	return res;
+}
+
+const Vector Vector::operator-(const Vector& other){
+	Vector res(*this);
+	res -= other;
+	return res;
+}
+
+const Vector Vector::operator*(int anum){
+	Vector res(*this);
+	res *= anum;
+	return res;
+}
+
+const Vector Vector::operator*(double anum){
+	Vector res(*this);
+	res *= anum;
+	return res;
+}
+
+const Vector Vector::operator*(float anum){
+	Vector res(*this);
+	res *= anum;
+	return res;
 }
