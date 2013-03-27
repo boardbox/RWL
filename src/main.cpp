@@ -4,9 +4,7 @@
 #include <GL/glfw.h>
 #include "Vector.h"
 #include "WinMgr.h"
-#include "Floor.h"
 #include "Camera.h"
-#include "Agent.h"
 #include "God.h" 
 
 //constants
@@ -24,7 +22,7 @@ int GLFWCALL closeWindow(){
 	gameOver = true;
 	return GL_TRUE;
 }
-
+/*
 void mvPlayer(Agent& p,const Camera& pcam){ //move player using mouse
 	int x,y;
 	glfwGetMousePos(&x,&y);
@@ -38,7 +36,7 @@ void mvPlayer(Agent& p,const Camera& pcam){ //move player using mouse
 	p.dest.x = xg;
 	p.dest.y = yg;
 }
-
+*/
 //program main
 int
 main(void){

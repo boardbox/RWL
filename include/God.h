@@ -14,7 +14,6 @@ class God{
 	WinMgr window;
 	Terrain *tHead;
 	Terrain *terrain;
-	Agent *selection;
 	ILinkedList *rHead;
 	ILinkedList *robots;
 	Camera *eye;

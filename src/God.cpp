@@ -4,7 +4,6 @@
 #include <GL/glfw.h>
 #include "Vector.h"
 #include "ILinkedList.h"
-#include "Agent.h"
 #include "Camera.h"
 #include "Terrain.h"
 #include "God.h"
