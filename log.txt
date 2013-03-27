@@ -1,3 +1,9 @@
+3/27/2013
+Collision interface is not sufficient
+Floor integrated into Terrain
+Object completely removed
+makefile reflects changes
+
 3/26/2013
 Finished updating Vector
 Delaying work on Agent until UI is mapped out

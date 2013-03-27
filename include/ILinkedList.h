@@ -5,8 +5,8 @@ class ILinkedList{
 	ILinkedList *prev;
 	ILinkedList *next;
 
-	ILinkedList(const Object&);
-	ILinkedList& operator=(const Object&);
+	ILinkedList(const ILinkedList&);
+	ILinkedList& operator=(const ILinkedList&);
 	
 	public:
 	ILinkedList();

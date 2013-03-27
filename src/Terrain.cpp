@@ -2,15 +2,16 @@
 #include <cstdlib>
 #include <GL/glfw.h>
 #include "Vector.h"
+#include "ILinkedList.h"
 #include "Terrain.h"
 
 const int mountain = 1;
 const int swamp 	 = 2;
-const int floor		 = 3;
+const int ground	 = 3;
 const double PI = 4.0*atan(1.0);
 
 Terrain::Terrain(double xMax,double yMax):
-Object(),rad(0),type(-1),walkable(false){
+ILinkedList(),rad(0),type(-1),walkable(false){
 	if(rand()%10 > 4) type = mountain;
 	else type = swamp;
 	Vector place(rand()%(int)xMax,rand()%(int)yMax,0);
@@ -18,6 +19,8 @@ Object(),rad(0),type(-1),walkable(false){
 	rad = rand() % 20 + 1;
 	if(type == swamp) walkable = true;
 }
+
+Terrain::Terrain(int t):ILinkedList(),type(t){}
 
 void Terrain::draw() const{
 	if(type == mountain){
@@ -49,7 +52,7 @@ void Terrain::draw() const{
 			glEnd();
 		}
 	}
-	else if(type == floor){
+	else if(type == ground){
 		double xMin = 0;
 		double yMin = 0;
 		double xMax = 200;
@@ -107,9 +110,10 @@ bool Terrain::collide(const Vector& pos) const{
 	return false;
 }
 
-bool Terrain::collide(const Object& thing) const{
-	Vector ruler(loc);
+bool Terrain::collide(const ILinkedList& thing) const{
+	/*Vector ruler(loc);
 	ruler.subtract(thing.loc);
 	if(ruler.length() < rad) return true;
+	return false;*/
 	return false;
 }

@@ -1,13 +1,13 @@
 #include <cmath>
 #include <GL/glfw.h>
 #include "Vector.h"
-#include "Object.h"
+#include "ILinkedList.h"
 #include "Agent.h"
 
 const double speed = 1;
 const double ftime = 0.01666667;
 
-Agent::Agent():Object(),bsize(5){}
+Agent::Agent():ILinkedList(),bsize(5){}
 	
 void Agent::move(){
 	if(dest == loc) return; //nothing to do
@@ -79,7 +79,7 @@ bool Agent::collide(const Vector& vec) const{
 	else return false;
 }
 
-bool Agent::collide(const Object& thing) const{
+bool Agent::collide(const ILinkedList& thing) const{
 	Vector ruler(thing.loc);
 	ruler.subtract(loc);
 	if(ruler.length() < bsize) return true;

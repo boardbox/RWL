@@ -3,11 +3,13 @@
 
 #include "ILinkedList.h"
 
+class Vector;
+
 class Terrain : public ILinkedList{
 	bool collides;
 	double rad;
 	int type;
-
+	
 	Terrain& operator=(const Terrain&);
 	Terrain(const Terrain&);
 	Terrain();
@@ -15,11 +17,13 @@ class Terrain : public ILinkedList{
 
 	public:
 	bool walkable;
-	
+	Vector loc;
+
 	Terrain(double xMax,double yMax);
+	Terrain(int type);
 	void draw() const;
 	bool collide(const Vector&) const;
-	bool collide(const Object&) const;
+	bool collide(const ILinkedList&) const;
 };
 
 #endif

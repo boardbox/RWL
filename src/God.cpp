@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <GL/glfw.h>
 #include "Vector.h"
+#include "ILinkedList.h"
 #include "Agent.h"
 #include "Camera.h"
 #include "Terrain.h"
@@ -43,12 +44,12 @@ void God::forgetAll(){
 }
 
 void God::generateTerrain(){
-	terrain = new Terrain(xWorld,yWorld);
+	terrain = new Terrain(3);
 	tHead = terrain;
 	int num = rand() % maxTerrain + 1;
 	for(int i=0;i<num;i++){
 		terrain->setNext(new Terrain(xWorld,yWorld));
-		terrain = terrain->getNext();
+		terrain = (Terrain*) terrain->getNext();
 		terrain->setNext(NULL);
 	}
 }
@@ -58,7 +59,7 @@ void God::draw(){
 	terrain = tHead;
 	while(terrain != NULL){
 		terrain->draw();
-		terrain = terrain->getNext();
+		terrain = (Terrain*) terrain->getNext();
 	}
 }
 
