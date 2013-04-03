@@ -7,6 +7,7 @@
 //foward declarations
 class Terrain;
 class ILinkedList;
+class Piece;
 
 class God{
 	bool alive;
@@ -17,6 +18,12 @@ class God{
 	ILinkedList *rHead;
 	ILinkedList *robots;
 	Camera *eye;
+	Piece* p1master;
+	Piece* p2master;
+	Piece* wmaster;
+	Piece* p1head;
+	Piece* p2head;
+	Piece* whead;
 
 	God(const God& g); //there is no copying of God
 	God& operator=(const God& g);

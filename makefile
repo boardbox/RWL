@@ -1,7 +1,7 @@
 CC = g++
 LIBS = -lGL -lGLU -lglfw
 FLAGS = -c -Wall -g -Iinclude
-OBJECTS = main.o Vector.o ILinkedList.o WinMgr.o Camera.o Terrain.o God.o
+OBJECTS = main.o Vector.o ILinkedList.o WinMgr.o Camera.o Terrain.o God.o Piece.o
 
 app: Robots
 
@@ -31,6 +31,9 @@ God.o : src/God.cpp
 
 Terrain.o : src/Terrain.cpp
 	$(CC) $(FLAGS) src/Terrain.cpp
+
+Piece.o : src/Piece.cpp
+	$(CC) $(FLAGS) src/Piece.cpp
 
 clean :
 	rm -rf *.o Robots
